@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		470A82E0221AEEDE00B3BA0B /* OpenProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		470A82E0221AEEDE00B3BA0B /* AZOpenProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AZOpenProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		470A82E3221AEEDE00B3BA0B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		470A82E4221AEEDE00B3BA0B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		470A82E6221AEEDE00B3BA0B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		470A82D7221AEEDE00B3BA0B = {
 			isa = PBXGroup;
 			children = (
-				470A82E2221AEEDE00B3BA0B /* OpenProject */,
+				470A82E2221AEEDE00B3BA0B /* AZOpenProject */,
 				470A82E1221AEEDE00B3BA0B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +56,12 @@
 		470A82E1221AEEDE00B3BA0B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				470A82E0221AEEDE00B3BA0B /* OpenProject.app */,
+				470A82E0221AEEDE00B3BA0B /* AZOpenProject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		470A82E2221AEEDE00B3BA0B /* OpenProject */ = {
+		470A82E2221AEEDE00B3BA0B /* AZOpenProject */ = {
 			isa = PBXGroup;
 			children = (
 				470A82F9221AEF1D00B3BA0B /* Model */,
@@ -75,7 +75,7 @@
 				470A82F1221AEEE100B3BA0B /* Info.plist */,
 				470A82F2221AEEE100B3BA0B /* main.m */,
 			);
-			path = OpenProject;
+			path = AZOpenProject;
 			sourceTree = "<group>";
 		};
 		470A82F9221AEF1D00B3BA0B /* Model */ = {
@@ -92,9 +92,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		470A82DF221AEEDE00B3BA0B /* OpenProject */ = {
+		470A82DF221AEEDE00B3BA0B /* AZOpenProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 470A82F6221AEEE100B3BA0B /* Build configuration list for PBXNativeTarget "OpenProject" */;
+			buildConfigurationList = 470A82F6221AEEE100B3BA0B /* Build configuration list for PBXNativeTarget "AZOpenProject" */;
 			buildPhases = (
 				470A82DC221AEEDE00B3BA0B /* Sources */,
 				470A82DD221AEEDE00B3BA0B /* Frameworks */,
@@ -104,9 +104,9 @@
 			);
 			dependencies = (
 			);
-			name = OpenProject;
+			name = AZOpenProject;
 			productName = OpenProject;
-			productReference = 470A82E0221AEEDE00B3BA0B /* OpenProject.app */;
+			productReference = 470A82E0221AEEDE00B3BA0B /* AZOpenProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -123,7 +123,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 470A82DB221AEEDE00B3BA0B /* Build configuration list for PBXProject "OpenProject" */;
+			buildConfigurationList = 470A82DB221AEEDE00B3BA0B /* Build configuration list for PBXProject "AZOpenProject" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -136,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				470A82DF221AEEDE00B3BA0B /* OpenProject */,
+				470A82DF221AEEDE00B3BA0B /* AZOpenProject */,
 			);
 		};
 /* End PBXProject section */
@@ -307,7 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7884U55YA7;
-				INFOPLIST_FILE = OpenProject/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AZOpenProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7884U55YA7;
-				INFOPLIST_FILE = OpenProject/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/AZOpenProject/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,7 +338,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		470A82DB221AEEDE00B3BA0B /* Build configuration list for PBXProject "OpenProject" */ = {
+		470A82DB221AEEDE00B3BA0B /* Build configuration list for PBXProject "AZOpenProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				470A82F4221AEEE100B3BA0B /* Debug */,
@@ -347,7 +347,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		470A82F6221AEEE100B3BA0B /* Build configuration list for PBXNativeTarget "OpenProject" */ = {
+		470A82F6221AEEE100B3BA0B /* Build configuration list for PBXNativeTarget "AZOpenProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				470A82F7221AEEE100B3BA0B /* Debug */,
