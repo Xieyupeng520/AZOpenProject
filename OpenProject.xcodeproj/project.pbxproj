@@ -13,6 +13,8 @@
 		470A82ED221AEEE100B3BA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470A82EC221AEEE100B3BA0B /* Assets.xcassets */; };
 		470A82F0221AEEE100B3BA0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470A82EE221AEEE100B3BA0B /* LaunchScreen.storyboard */; };
 		470A82F3221AEEE100B3BA0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82F2221AEEE100B3BA0B /* main.m */; };
+		470A82FC221AEF7700B3BA0B /* CircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FB221AEF7700B3BA0B /* CircleModel.m */; };
+		470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FE221AF42600B3BA0B /* CircleLinkedList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		470A82EF221AEEE100B3BA0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		470A82F1221AEEE100B3BA0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		470A82F2221AEEE100B3BA0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		470A82FA221AEF7700B3BA0B /* CircleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleModel.h; sourceTree = "<group>"; };
+		470A82FB221AEF7700B3BA0B /* CircleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleModel.m; sourceTree = "<group>"; };
+		470A82FD221AF42600B3BA0B /* CircleLinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleLinkedList.h; sourceTree = "<group>"; };
+		470A82FE221AF42600B3BA0B /* CircleLinkedList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleLinkedList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 		470A82E2221AEEDE00B3BA0B /* OpenProject */ = {
 			isa = PBXGroup;
 			children = (
+				470A82F9221AEF1D00B3BA0B /* Model */,
 				470A82E3221AEEDE00B3BA0B /* AppDelegate.h */,
 				470A82E4221AEEDE00B3BA0B /* AppDelegate.m */,
 				470A82E6221AEEDE00B3BA0B /* ViewController.h */,
@@ -69,6 +76,17 @@
 				470A82F2221AEEE100B3BA0B /* main.m */,
 			);
 			path = OpenProject;
+			sourceTree = "<group>";
+		};
+		470A82F9221AEF1D00B3BA0B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				470A82FA221AEF7700B3BA0B /* CircleModel.h */,
+				470A82FB221AEF7700B3BA0B /* CircleModel.m */,
+				470A82FD221AF42600B3BA0B /* CircleLinkedList.h */,
+				470A82FE221AF42600B3BA0B /* CircleLinkedList.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				470A82E8221AEEDE00B3BA0B /* ViewController.m in Sources */,
+				470A82FC221AEF7700B3BA0B /* CircleModel.m in Sources */,
+				470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */,
 				470A82F3221AEEE100B3BA0B /* main.m in Sources */,
 				470A82E5221AEEDE00B3BA0B /* AppDelegate.m in Sources */,
 			);
