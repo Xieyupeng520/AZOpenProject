@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "CircleView.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
 
 @end
 
@@ -16,8 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
 }
 
+- (IBAction)onAddButtonClick:(id)sender {
+    CircleView* circle = [CircleView new];
+    [self.view addSubview:circle];
+}
 
 @end
