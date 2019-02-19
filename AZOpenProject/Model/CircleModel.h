@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CircleModel : NSObject
 
 @property(nonatomic, copy) NSString* title;
-@property(nonatomic, assign) CGPoint position;
+@property(nonatomic, assign) CGPoint centerPoint;
 @property(nonatomic, assign) float radius;
 
 @property(nonatomic, strong, nullable) CircleModel* preCircle;

@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59e-73-nkK" customClass="CircleCanvas">
+                                <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAz-Tn-e6Z">
                                 <rect key="frame" x="160.5" y="573" width="54" height="54"/>
                                 <constraints>
@@ -58,14 +62,19 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QXS-Zw-JFD" secondAttribute="trailing" constant="12" id="5dL-Ub-OUR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iAz-Tn-e6Z" secondAttribute="bottom" constant="40" id="Beh-Rp-Jwe"/>
+                            <constraint firstItem="59e-73-nkK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ChM-dZ-dpx"/>
+                            <constraint firstItem="59e-73-nkK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="JPg-A1-7HI"/>
                             <constraint firstItem="QXS-Zw-JFD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="Sqy-c5-3XT"/>
                             <constraint firstItem="QXS-Zw-JFD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="aNH-rX-qk2"/>
                             <constraint firstItem="iAz-Tn-e6Z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cPB-nV-OoO"/>
+                            <constraint firstItem="59e-73-nkK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="ldS-af-XKH"/>
+                            <constraint firstItem="59e-73-nkK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tpn-UD-B5v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="iAz-Tn-e6Z" id="4Nq-Lj-sZX"/>
+                        <outlet property="circleCanvas" destination="59e-73-nkK" id="4OV-Kw-dSy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

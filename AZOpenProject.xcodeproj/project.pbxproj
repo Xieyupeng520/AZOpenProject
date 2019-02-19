@@ -15,6 +15,7 @@
 		470A82F3221AEEE100B3BA0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82F2221AEEE100B3BA0B /* main.m */; };
 		470A82FC221AEF7700B3BA0B /* CircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FB221AEF7700B3BA0B /* CircleModel.m */; };
 		470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FE221AF42600B3BA0B /* CircleLinkedList.m */; };
+		479F34F1221C55FF000E0F06 /* CircleGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 479F34F0221C55FF000E0F06 /* CircleGroup.m */; };
 		637FF647221C265900245228 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FF646221C265900245228 /* CircleView.m */; };
 		637FF64A221C269000245228 /* CircleCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FF649221C269000245228 /* CircleCanvas.m */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,8 @@
 		470A82FB221AEF7700B3BA0B /* CircleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleModel.m; sourceTree = "<group>"; };
 		470A82FD221AF42600B3BA0B /* CircleLinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleLinkedList.h; sourceTree = "<group>"; };
 		470A82FE221AF42600B3BA0B /* CircleLinkedList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleLinkedList.m; sourceTree = "<group>"; };
+		479F34EF221C55FF000E0F06 /* CircleGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleGroup.h; sourceTree = "<group>"; };
+		479F34F0221C55FF000E0F06 /* CircleGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleGroup.m; sourceTree = "<group>"; };
 		637FF645221C265900245228 /* CircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		637FF646221C265900245228 /* CircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		637FF648221C269000245228 /* CircleCanvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCanvas.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				470A82FB221AEF7700B3BA0B /* CircleModel.m */,
 				470A82FD221AF42600B3BA0B /* CircleLinkedList.h */,
 				470A82FE221AF42600B3BA0B /* CircleLinkedList.m */,
+				479F34EF221C55FF000E0F06 /* CircleGroup.h */,
+				479F34F0221C55FF000E0F06 /* CircleGroup.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				637FF64A221C269000245228 /* CircleCanvas.m in Sources */,
 				470A82F3221AEEE100B3BA0B /* main.m in Sources */,
 				470A82E5221AEEDE00B3BA0B /* AppDelegate.m in Sources */,
+				479F34F1221C55FF000E0F06 /* CircleGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

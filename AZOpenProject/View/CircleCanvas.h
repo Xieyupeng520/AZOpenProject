@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CircleCanvas : UIView
 
+- (void)addNewCircleAt:(CGPoint)center;
 @end
 
 NS_ASSUME_NONNULL_END

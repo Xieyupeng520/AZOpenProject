@@ -1,7 +1,7 @@
 //
 //  CircleLinkedList.h
 //  OpenProject
-//  圆链表
+//  圆链表，单个圆也属于一个链表
 //  Created by 阿曌 on 2019/2/18.
 //  Copyright © 2019 阿曌. All rights reserved.
 //

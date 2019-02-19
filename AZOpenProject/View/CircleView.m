@@ -31,6 +31,12 @@ static const CGColorRef SelectedBorderColor_Del() {
     return [self initWithCenter:center];
 }
 
++ (instancetype)newWithModel:(CircleModel*)model {
+    CircleView* circle = [[CircleView alloc] initWithCenter:model.centerPoint];
+    circle.circleModel = model;
+    return circle;
+}
+
 - (instancetype)initWithCenter:(CGPoint)center {
     CGRect frame = CGRectMake(center.x - CIRCLE_RADIUS/2, center.y - CIRCLE_RADIUS/2, CIRCLE_RADIUS, CIRCLE_RADIUS);
     return [self initWithFrame:frame];
@@ -44,10 +50,39 @@ static const CGColorRef SelectedBorderColor_Del() {
         self.layer.borderWidth = CIRCLE_BORDER_WIDTH;
         
         self.userInteractionEnabled = YES;
-        UITapGestureRecognizer* tapG = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
-        [self addGestureRecognizer:tapG];
     }
     return self;
+}
+
+- (void)dealloc {
+    //怕忘记调用delete，在dealloc时再调用一次
+    [self delete];
+}
+
+#pragma mark - setter & getter
+
+- (void)setCircleModel:(CircleModel *)circleModel {
+    _circleModel = circleModel;
+    
+    //KVO
+    [circleModel addObserver:self forKeyPath:@"centerPoint" options:NSKeyValueObservingOptionNew context:nil];
+    [circleModel addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (object != self.circleModel) {
+        NSAssert(0, @"监听对象错误");
+    }
+    
+    if ([keyPath isEqualToString:@"title"]) {
+        
+    } else if ([keyPath isEqualToString:@"centerPoint"]) {
+        self.frame = CGRectMake(self.circleModel.centerPoint.x - CGRectGetWidth(self.bounds)/2,
+                                self.circleModel.centerPoint.y - CGRectGetHeight(self.bounds)/2,
+                                CGRectGetWidth(self.bounds),
+                                CGRectGetHeight(self.bounds));
+    }
 }
 
 #pragma mark - 选中态和边框颜色
@@ -132,9 +167,11 @@ static const CGColorRef SelectedBorderColor_Del() {
 - (void)setBorderBothColor {
     self.layer.borderColor = UIColor.yellowColor.CGColor;
 }
-#pragma mark - 手势处理
-///点击手势
-- (void)onTap:(UITapGestureRecognizer*)tapRecognizer {
-    [self setSelected:!self.selected];
+
+#pragma mark - 删除
+- (void)delete {
+    [self.circleModel removeObserver:self forKeyPath:@"title"];
+    [self.circleModel removeObserver:self forKeyPath:@"centerPoint"];
+    _circleModel = nil;
 }
 @end

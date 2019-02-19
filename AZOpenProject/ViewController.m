@@ -7,10 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "CircleView.h"
+#import "CircleCanvas.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet CircleCanvas *circleCanvas;
 
 @end
 
@@ -22,8 +23,7 @@
 }
 
 - (IBAction)onAddButtonClick:(id)sender {
-    CircleView* circle = [CircleView new];
-    [self.view addSubview:circle];
+    [self.circleCanvas addNewCircleAt:CGPointMake(CGRectGetMidX(self.circleCanvas.bounds), CGRectGetMidY(self.circleCanvas.bounds))];
 }
 
 @end

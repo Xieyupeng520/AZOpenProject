@@ -18,13 +18,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CircleView : UIView
 
-@property(nonatomic, strong) CircleModel* circleModel;
+@property(nonatomic, strong, nonnull) CircleModel* circleModel;
 @property(nonatomic, assign, getter=isSelected) BOOL selected;
 @property(nonatomic, weak) id<CircleViewDelegate> circleViewDelegate;
 
 - (instancetype)initWithCenter:(CGPoint)center;
 
++ (instancetype)newWithModel:(CircleModel*)model;
 
+/** 删除该圆
+ *  会把该圆关联的model解除监听
+ */
+- (void)delete;
 @end
 
 @protocol CircleViewDelegate <NSObject>
