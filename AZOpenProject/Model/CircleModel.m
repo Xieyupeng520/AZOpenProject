@@ -15,6 +15,8 @@
     
     self.preCircle.nextCircle = nil;
     self.nextCircle.preCircle = nil;
+    self.preCircle = nil;
+    self.nextCircle = nil;
 }
 
 - (NSString *)description {

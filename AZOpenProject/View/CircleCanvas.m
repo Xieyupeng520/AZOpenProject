@@ -45,12 +45,57 @@
 }
 
 
+#pragma mark - 绘图
 - (void)drawRect:(CGRect)rect {
-    
+    for (CircleLinkedList* linkList in self.circleGroup.circleLists) {
+        CircleModel* circle1 = linkList.startCircle;
+        CircleModel* circle2;
+        while (circle1.nextCircle) {
+            circle2 = circle1.nextCircle;
+            [self drawLineFrom:circle1 To:circle2];
+            circle1 = circle2;
+        }
+    }
 }
 
-#pragma mark - 新增
-#pragma mark 新增圆
+- (void)drawLineFrom:(CircleModel*)fromCircle To:(CircleModel*)toCircle {
+    float from_x = fromCircle.centerPoint.x;
+    float from_y = fromCircle.centerPoint.y;
+    float to_x = toCircle.centerPoint.x;
+    float to_y = toCircle.centerPoint.y;
+    float r = fromCircle.radius;
+    
+    //画线
+    float angle1,line_from_x,line_from_y,line_to_x,line_to_y;
+    angle1 = atanf((to_x - from_x) / (to_y - from_y));
+    
+    if (from_y > to_y) { //一二象限
+        line_from_x = -sinf(angle1) * r + from_x;
+        line_from_y = -cosf(angle1) * r + from_y;
+        line_to_x = sinf(angle1) * r + to_x;
+        line_to_y = cosf(angle1) * r + to_y;
+    } else { //三四象限
+        line_from_x = sinf(angle1) * r + from_x;
+        line_from_y = cosf(angle1) * r + from_y;
+        line_to_x = -sinf(angle1) * r + to_x;
+        line_to_y = -cosf(angle1) * r + to_y;
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor blackColor] setStroke];
+    CGContextSetLineWidth(ctx, 3);
+    CGContextSetLineJoin(ctx, kCGLineJoinRound);
+    CGContextSetLineCap(ctx, kCGLineCapRound);
+    CGContextMoveToPoint(ctx, line_from_x, line_from_y);
+    CGContextAddLineToPoint(ctx, line_to_x, line_to_y);
+    CGContextStrokePath(ctx);
+    
+    //画顶点圆
+    CGContextAddArc(ctx, line_to_x, line_to_y, 5, 0, 2 * M_PI, 0);
+    CGContextFillPath(ctx);
+}
+
+#pragma mark - 新增圆
 - (void)addNewCircleAt:(CGPoint)center {
     CircleModel* model = [CircleModel new];
     model.centerPoint = center;
@@ -72,46 +117,66 @@
 
 ///给圆添加手势
 - (void)_addGesToCircle:(CircleView*)newCircle {
+    //点击
     UITapGestureRecognizer* tapG = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
     [newCircle addGestureRecognizer:tapG];
     
+    //移动
     UIPanGestureRecognizer* panG = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
     [newCircle addGestureRecognizer:panG];
+    
+    //长按
+    UILongPressGestureRecognizer* longPressG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+    [newCircle addGestureRecognizer:longPressG];
 }
 
 #pragma mark - 选中圆
 - (void)dealSelectedCircle:(CircleView*)newCircle {
     CircleView* oldCircle = [self hasSelectedView];
-    if (!oldCircle) { //nil表示当前圆为第一个被选中的,ui处理就行
+    if (!oldCircle || oldCircle == newCircle) { //nil表示当前圆为第一个被选中的,ui处理就行
         return;
     } else {
         if (oldCircle.circleModel.preCircle == newCircle.circleModel ||
             oldCircle.circleModel.nextCircle == newCircle.circleModel) {
             //存在关联，则提示弹框可以删除关联
-            [self showDelTipsWithDelHandler:^{
+            [self showDelTipsWithMsg:@"确认删除选中的两圆之间的关联吗？" delHandler:^{
                 [self.circleGroup delLinkWith:oldCircle.circleModel and:newCircle.circleModel];
                 [oldCircle setSelected:NO];
                 [newCircle setSelected:NO];
-                [self setNeedsLayout];
+                [self setNeedsDisplay];
+            } cancelHandler:^{
+                [oldCircle setSelected:NO];
+                [newCircle setSelected:NO];
             }];
+        } else if ([self.circleGroup isBothInOneList:oldCircle.circleModel and:newCircle.circleModel]) { //俩圆在同一条链表的首尾
+            [self showTips:@"无法建立循环关联"];
+            [oldCircle setSelected:NO];
+            [newCircle setSelected:NO];
         } else if (oldCircle.circleModel.preCircle != newCircle.circleModel &&
                    oldCircle.circleModel.nextCircle != newCircle.circleModel &&
-                   !oldCircle.circleModel.preCircle &&
-                   !newCircle.circleModel.nextCircle) {
+                   !oldCircle.circleModel.nextCircle &&
+                   !newCircle.circleModel.preCircle) {
             //可建立关联
             [self.circleGroup addLinkWith:oldCircle.circleModel and:newCircle.circleModel];
             [oldCircle setSelected:NO];
             [newCircle setSelected:NO];
-            [self setNeedsLayout];
+            [self setNeedsDisplay];
         } else {
-            [self showTips:@"无法给选中的两个圆建议关联"];
+            [self showTips:@"无法给选中的两个圆建立关联"];
             [oldCircle setSelected:NO];
             [newCircle setSelected:NO];
         }
     }
 }
 
-#pragma mark - 删除
+#pragma mark - 删除圆
+- (void)deleteCircle:(CircleView*)delCircle {
+    [self.circleGroup delCircle:delCircle.circleModel];
+    [delCircle delete];
+    [delCircle removeFromSuperview];
+    
+    [self setNeedsDisplay];
+}
 
 #pragma mark - 手势处理
 ///点击手势
@@ -135,6 +200,18 @@
     CGPoint touchPoint = [panRecognizer locationInView:self];
 //    NSLog(@"%s touch Point : %f, %f", __FUNCTION__, touchPoint.x, touchPoint.y);
     touchView.circleModel.centerPoint = touchPoint;
+    
+    [self setNeedsDisplay];
+}
+
+- (void)onLongPress:(UILongPressGestureRecognizer*)longPressRecognizer {
+    CircleView *touchView = (CircleView*)longPressRecognizer.view;
+    [touchView setBorderDelColor];
+    [self showDelTipsWithMsg:@"确认删除选中的圆吗？" delHandler:^{
+        [self deleteCircle:touchView];
+    } cancelHandler:^{
+        [touchView setSelected:NO];
+    }];
 }
 
 #pragma mark - CircleViewDelegate
@@ -153,11 +230,15 @@
     [self.viewController presentViewController:alert animated:NO completion:nil];
 }
 
-- (void)showDelTipsWithDelHandler:(void (^ __nullable)(void))delHandler {
+- (void)showDelTipsWithMsg:(NSString*)msg delHandler:(void (^ __nullable)(void))delHandler cancelHandler:(void (^ __nullable)(void))cancelHandler {
     NSLog(@"%s", __FUNCTION__);
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"删除关联" message:@"确认删除选中的两圆之间的关联吗？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"删除" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        if (cancelHandler) {
+            cancelHandler();
+        }
+    }];
     [alert addAction:cancelAction];
     UIAlertAction* delAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         if (delHandler) {

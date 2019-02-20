@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 删除整条链表
  */
-- (void)delete;
+- (void)deleteAll;
 
 /** 链表内元素总数
  */

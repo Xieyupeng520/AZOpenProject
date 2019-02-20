@@ -28,6 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 /** 删除两圆之间的关联
  */
 - (void)delLinkWith:(CircleModel*)circle1 and:(CircleModel*)circle2;
+
+/** 删除圆
+ */
+- (void)delCircle:(CircleModel*)delCircle;
+
+/** 判断两个圆是否在同一链表内
+ */
+- (BOOL)isBothInOneList:(CircleModel*)circle1 and:(CircleModel*)circle2;
 @end
 
 NS_ASSUME_NONNULL_END

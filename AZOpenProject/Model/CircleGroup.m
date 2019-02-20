@@ -29,8 +29,12 @@ static const NSArray<NSString*>* TITLE_LIST() {
     return self;
 }
 
+#pragma mark - 判断
+- (BOOL)isBothInOneList:(CircleModel*)circle1 and:(CircleModel*)circle2 {
+    return NO;
+}
 #pragma mark - 新增
-#pragma mark 新增圆链表
+///新增圆链表
 - (BOOL)addNewCircleListWith:(CircleModel*)circleModel {
     NSString* title = [self _requireValidTitle];
     if (!title) {
@@ -44,7 +48,7 @@ static const NSArray<NSString*>* TITLE_LIST() {
     return YES;
 }
 
-#pragma mark 新增关联
+///新增关联
 - (void)addLinkWith:(CircleModel*)preCircle and:(CircleModel*)nextCircle {
     if (!preCircle || !nextCircle) {
         NSAssert(0, @"两个圆没有绑定自己的数据模型？");
@@ -53,17 +57,22 @@ static const NSArray<NSString*>* TITLE_LIST() {
     NSLog(@"圆(%@)和圆(%@)建立关联", preCircle.title, nextCircle.title);
     if (!preCircle.nextCircle && //圆1没有出点
         !nextCircle.preCircle && //圆2没有入点
-        preCircle.preCircle != nextCircle //圆1的入点不等于圆2（圆2的出点不等于圆1）
-        ) {
+        preCircle.preCircle != nextCircle) { //圆1的入点不等于圆2（圆2的出点不等于圆1）
+        for (CircleLinkedList* list in self.circleLists) {
+            if ([list isCircleIn:nextCircle]) {
+                [self.circleLists removeObject:list]; //即将被合并到preCircle所在链表中去了
+                break;
+            }
+        }
         preCircle.nextCircle = nextCircle;
         nextCircle.preCircle = preCircle;
+        
     } else {
         NSLog(@"圆(%@)和圆(%@)建立关联失败", preCircle.title, nextCircle.title);
     }
 }
 
 #pragma mark - 删除
-#pragma 删除关联
 ///删除两圆之间的关联
 - (void)delLinkWith:(CircleModel*)circle1 and:(CircleModel*)circle2 {
     NSLog(@"删除圆(%@)和圆(%@)的关联", circle1.title, circle2.title);
@@ -71,12 +80,33 @@ static const NSArray<NSString*>* TITLE_LIST() {
     if (circle1.preCircle == circle2) {
         circle1.preCircle = nil;
         circle2.nextCircle = nil;
+        [self.circleLists addObject:[[CircleLinkedList alloc] initWithStartCircle:circle1]];
     } else if (circle2.preCircle == circle1) {
         circle1.nextCircle = nil;
         circle2.preCircle = nil;
+        [self.circleLists addObject:[[CircleLinkedList alloc] initWithStartCircle:circle2]];
     } else {
         NSLog(@"圆(%@)和圆(%@)本来就没有关联", circle1.title, circle2.title);
     }
+}
+
+//删除圆
+- (void)delCircle:(CircleModel*)delCircle {
+    CircleLinkedList* newList = nil;
+    for (CircleLinkedList* list in self.circleLists) {
+        if ([list isCircleIn:delCircle]) {
+            newList = [list deleteCircle:delCircle];
+            if (list.count == 0) {
+                [self.circleLists removeObject:list];
+            }
+            break;
+        }
+    }
+    if (newList) {
+        [self.circleLists addObject:newList];
+    }
+    
+    [self resetTitle:delCircle.title];
 }
 
 #pragma mark - private method
@@ -92,6 +122,16 @@ static const NSArray<NSString*>* TITLE_LIST() {
     }
     NSLog(@"%s: %@ /n curList:[%@]", __FUNCTION__, result, self.titleList.description);
     return result;
+}
+
+- (void)resetTitle:(NSString*)title {
+    NSArray<NSString*>* orignalArr = [TITLE_LIST() copy];
+    for(int i = 0; i < self.titleList.count; i++) {
+        if (i < orignalArr.count && [orignalArr[i] isEqualToString:title]) {
+            self.titleList[i] = title;
+            break;
+        }
+    }
 }
 
 @end

@@ -41,6 +41,7 @@ static const CGColorRef SelectedBorderColor_Del() {
     CircleView* circle = [[CircleView alloc] initWithCenter:model.centerPoint];
     circle.circleModel = model;
     [circle setTitle:model.title];
+    model.radius = CGRectGetWidth(circle.bounds)/2;
     return circle;
 }
 
@@ -141,7 +142,7 @@ static const CGColorRef SelectedBorderColor_Del() {
     }
     if (!self.circleModel.preCircle && !self.circleModel.nextCircle) {
         [self setBorderAddColor];
-    } else if (self.circleModel.preCircle && !self.circleModel.nextCircle) {
+    } else if (self.circleModel.preCircle && self.circleModel.nextCircle) {
         [self setBorderBothColor];
     } else if (self.circleModel) {
         [self setBorderDelColor];

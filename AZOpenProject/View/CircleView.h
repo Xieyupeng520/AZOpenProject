@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  会把该圆关联的model解除监听
  */
 - (void)delete;
+
+/** 设置边框为删除色
+ *  删除圆是会用到
+ */
+- (void)setBorderDelColor;
 @end
 
 @protocol CircleViewDelegate <NSObject>

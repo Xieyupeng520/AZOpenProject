@@ -133,6 +133,6 @@
             result = [result stringByAppendingString:@", "];
         }
     }
-    return result;
+    return [result stringByAppendingString:@">"];
 }
 @end
