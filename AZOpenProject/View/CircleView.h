@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CircleModel.h"
 
-#define CIRCLE_RADIUS (64)          //默认半径
+#define CIRCLE_RADIUS (32)          //默认半径
 #define CIRCLE_BORDER_WIDTH (3)     //边框宽度
 
 NS_ASSUME_NONNULL_BEGIN

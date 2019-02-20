@@ -21,6 +21,12 @@ static const CGColorRef SelectedBorderColor_Del() {
     return UIColor.redColor.CGColor;
 }
 
+@interface CircleView()
+
+@property(nonatomic, strong) UILabel* titleLabel;
+
+@end
+
 @implementation CircleView
 
 ///默认显示在屏幕中央
@@ -34,11 +40,12 @@ static const CGColorRef SelectedBorderColor_Del() {
 + (instancetype)newWithModel:(CircleModel*)model {
     CircleView* circle = [[CircleView alloc] initWithCenter:model.centerPoint];
     circle.circleModel = model;
+    [circle setTitle:model.title];
     return circle;
 }
 
 - (instancetype)initWithCenter:(CGPoint)center {
-    CGRect frame = CGRectMake(center.x - CIRCLE_RADIUS/2, center.y - CIRCLE_RADIUS/2, CIRCLE_RADIUS, CIRCLE_RADIUS);
+    CGRect frame = CGRectMake(center.x - CIRCLE_RADIUS, center.y - CIRCLE_RADIUS, CIRCLE_RADIUS*2, CIRCLE_RADIUS*2);
     return [self initWithFrame:frame];
 }
 
@@ -48,8 +55,15 @@ static const CGColorRef SelectedBorderColor_Del() {
         self.layer.cornerRadius = CGRectGetWidth(frame)/2;
         [self setBorderDefaultColor];
         self.layer.borderWidth = CIRCLE_BORDER_WIDTH;
+        self.layer.backgroundColor = UIColor.whiteColor.CGColor;
         
         self.userInteractionEnabled = YES;
+        
+        self.titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        self.titleLabel.textColor = UIColor.grayColor;
+        [self addSubview:self.titleLabel];
     }
     return self;
 }
@@ -69,6 +83,10 @@ static const CGColorRef SelectedBorderColor_Del() {
     [circleModel addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void)setTitle:(NSString*)title {
+    self.titleLabel.text = title;
+}
+
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (object != self.circleModel) {
@@ -76,7 +94,7 @@ static const CGColorRef SelectedBorderColor_Del() {
     }
     
     if ([keyPath isEqualToString:@"title"]) {
-        
+        [self setTitle:self.circleModel.title];
     } else if ([keyPath isEqualToString:@"centerPoint"]) {
         self.frame = CGRectMake(self.circleModel.centerPoint.x - CGRectGetWidth(self.bounds)/2,
                                 self.circleModel.centerPoint.y - CGRectGetHeight(self.bounds)/2,
@@ -142,16 +160,16 @@ static const CGColorRef SelectedBorderColor_Del() {
         return;
     }
     if (self.circleModel.preCircle == circle1.circleModel || self.circleModel.nextCircle == circle1.circleModel) { //存在关联
+        //上层提示弹框可以删除关联，UI变红
         [self setBorderDelColor];
-        //TODO: 回调给上层提示弹框可以删除关联
     } else if (self.circleModel.preCircle != circle1.circleModel &&
                self.circleModel.nextCircle != circle1.circleModel &&
                !self.circleModel.preCircle &&
                !circle1.circleModel.nextCircle) {
         [self setBorderAddColor];
-        //TODO: 回调给上层可以给圆1、圆2建立关联了撒
+        //上层可以给圆1、圆2建立关联了
     } else {
-        //TODO: 回调给上层报错
+        //上层报错
     }
 }
 

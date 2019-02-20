@@ -13,9 +13,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CircleGroup : NSObject
 
-@property(nonatomic, copy) NSMutableArray<CircleLinkedList*>* circleLists;
+@property(nonatomic, strong) NSMutableArray<CircleLinkedList*>* circleLists;
 
-- (void)addNewCircleListWith:(CircleModel*)circleModel;
+/** 新增圆到圆链表组
+ *  return NO 表示添加失败，原因可能是圆超过当前允许添加的最多个数（10个）
+ */
+- (BOOL)addNewCircleListWith:(CircleModel*)circleModel;
+
+/** 新增两圆之间的关联
+ *  preCircle → nextCircle
+ */
+- (void)addLinkWith:(CircleModel*)preCircle and:(CircleModel*)nextCircle;
+
+/** 删除两圆之间的关联
+ */
+- (void)delLinkWith:(CircleModel*)circle1 and:(CircleModel*)circle2;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,17 +8,90 @@
 
 #import "CircleGroup.h"
 
+
+static const NSArray<NSString*>* TITLE_LIST() {
+    return @[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9"];
+}
+#define PLACEHOLDER_STRING @"-1" //表示已被使用，用来占位的字符
+
+@interface CircleGroup()
+
+@property(nonatomic, strong) NSMutableArray<NSString*>* titleList;
+
+@end
 @implementation CircleGroup
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.circleLists = [NSMutableArray array];
+        self.circleLists = [NSMutableArray arrayWithCapacity:TITLE_LIST().count];
+        self.titleList = [TITLE_LIST() mutableCopy];
     }
     return self;
 }
 
-- (void)addNewCircleListWith:(CircleModel*)circleModel {
+#pragma mark - 新增
+#pragma mark 新增圆链表
+- (BOOL)addNewCircleListWith:(CircleModel*)circleModel {
+    NSString* title = [self _requireValidTitle];
+    if (!title) {
+        return NO;
+    }
+    
     [self.circleLists addObject:[[CircleLinkedList alloc] initWithStartCircle:circleModel]];
+    
+    circleModel.title = title;
+    
+    return YES;
+}
+
+#pragma mark 新增关联
+- (void)addLinkWith:(CircleModel*)preCircle and:(CircleModel*)nextCircle {
+    if (!preCircle || !nextCircle) {
+        NSAssert(0, @"两个圆没有绑定自己的数据模型？");
+        return;
+    }
+    NSLog(@"圆(%@)和圆(%@)建立关联", preCircle.title, nextCircle.title);
+    if (!preCircle.nextCircle && //圆1没有出点
+        !nextCircle.preCircle && //圆2没有入点
+        preCircle.preCircle != nextCircle //圆1的入点不等于圆2（圆2的出点不等于圆1）
+        ) {
+        preCircle.nextCircle = nextCircle;
+        nextCircle.preCircle = preCircle;
+    } else {
+        NSLog(@"圆(%@)和圆(%@)建立关联失败", preCircle.title, nextCircle.title);
+    }
+}
+
+#pragma mark - 删除
+#pragma 删除关联
+///删除两圆之间的关联
+- (void)delLinkWith:(CircleModel*)circle1 and:(CircleModel*)circle2 {
+    NSLog(@"删除圆(%@)和圆(%@)的关联", circle1.title, circle2.title);
+    
+    if (circle1.preCircle == circle2) {
+        circle1.preCircle = nil;
+        circle2.nextCircle = nil;
+    } else if (circle2.preCircle == circle1) {
+        circle1.nextCircle = nil;
+        circle2.preCircle = nil;
+    } else {
+        NSLog(@"圆(%@)和圆(%@)本来就没有关联", circle1.title, circle2.title);
+    }
+}
+
+#pragma mark - private method
+///返回一个未被使用的title
+- (NSString*)_requireValidTitle {
+    NSString* result = nil;
+    for(int i = 0; i < self.titleList.count; i++) {
+        if (![self.titleList[i] isEqualToString:PLACEHOLDER_STRING]) {
+            result = self.titleList[i];
+            self.titleList[i] = PLACEHOLDER_STRING;
+            break;
+        }
+    }
+    NSLog(@"%s: %@ /n curList:[%@]", __FUNCTION__, result, self.titleList.description);
+    return result;
 }
 
 @end
