@@ -31,6 +31,11 @@ static const NSArray<NSString*>* TITLE_LIST() {
 
 #pragma mark - 判断
 - (BOOL)isBothInOneList:(CircleModel*)circle1 and:(CircleModel*)circle2 {
+    for (CircleLinkedList* list in self.circleLists) {
+        if ([list isCircleIn:circle1] && [list isCircleIn:circle2]) {
+            return YES;
+        }
+    }
     return NO;
 }
 #pragma mark - 新增

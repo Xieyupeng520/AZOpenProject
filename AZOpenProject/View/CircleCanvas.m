@@ -42,6 +42,7 @@
 
 - (void)commonInit {
     self.circleGroup = [CircleGroup new];
+    [self addNewCircleAt:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
 
 

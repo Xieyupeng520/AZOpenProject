@@ -142,7 +142,7 @@ static const CGColorRef SelectedBorderColor_Del() {
     }
     if (!self.circleModel.preCircle && !self.circleModel.nextCircle) {
         [self setBorderAddColor];
-    } else if (self.circleModel.preCircle && self.circleModel.nextCircle) {
+    } else if (self.circleModel.preCircle && !self.circleModel.nextCircle) {
         [self setBorderBothColor];
     } else if (self.circleModel) {
         [self setBorderDelColor];
