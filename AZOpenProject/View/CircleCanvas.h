@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 在某个区域内随机位置新增圆
  */
 - (void)addNewCircleRandomIn:(CGRect)area;
+
 @end
 
 NS_ASSUME_NONNULL_END

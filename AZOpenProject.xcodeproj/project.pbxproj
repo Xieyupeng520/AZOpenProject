@@ -119,6 +119,8 @@
 			children = (
 				63091621221D026D005FE2E7 /* UIView+UIViewController.h */,
 				63091622221D026D005FE2E7 /* UIView+UIViewController.m */,
+				635C3008221ED0B70036619D /* UIBezierPath+dqd_arrowhead.h */,
+				635C3009221ED0B70036619D /* UIBezierPath+dqd_arrowhead.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -143,19 +145,9 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		635C300B221ED0D20036619D /* Arrow */ = {
-			isa = PBXGroup;
-			children = (
-				635C3008221ED0B70036619D /* UIBezierPath+dqd_arrowhead.h */,
-				635C3009221ED0B70036619D /* UIBezierPath+dqd_arrowhead.m */,
-			);
-			path = Arrow;
-			sourceTree = "<group>";
-		};
 		637FF644221C263B00245228 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				635C300B221ED0D20036619D /* Arrow */,
 				637FF645221C265900245228 /* CircleView.h */,
 				637FF646221C265900245228 /* CircleView.m */,
 				637FF648221C269000245228 /* CircleCanvas.h */,

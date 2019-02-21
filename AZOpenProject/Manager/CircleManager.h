@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface CircleManager (Canvas)
+
 /** 枚举当前存在的所有关联
  */
 - (void)enumAllLink:(void (^)(CircleModel* fromCircle, CircleModel* toCircle))processBlock;
@@ -44,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 判断两个圆是否在同一链表内
  */
 - (BOOL)isBothInOneList:(CircleModel*)circle1 and:(CircleModel*)circle2;
+
 @end
 
 @interface CircleManager (DetailViewController)

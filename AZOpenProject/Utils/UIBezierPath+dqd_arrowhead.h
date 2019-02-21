@@ -18,4 +18,5 @@
 + (UIBezierPath *)bezierPathWithArrowFrom:(CGPoint)fromCircleCenter
                                        to:(CGPoint)toCircleCenter
                                    radius:(CGFloat)radius;
+
 @end

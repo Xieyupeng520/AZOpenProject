@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) int index; //当前vc对应下标
 
 - (instancetype)initWithIndex:(int)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

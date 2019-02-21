@@ -22,12 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //初始化一个圆
+    //初始化第一个圆
     [self.circleCanvas addNewCircleAt:CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds))];
 }
 
 - (IBAction)onAddButtonClick:(id)sender {
-//    [self.circleCanvas addNewCircleAt:CGPointMake(CGRectGetMidX(self.circleCanvas.bounds), CGRectGetMidY(self.circleCanvas.bounds))];
     static int gap = 12;
     [self.circleCanvas addNewCircleRandomIn:
      CGRectMake(gap,

@@ -43,6 +43,7 @@
     nextVC.index = self.index+1;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
+
 - (IBAction)onHomeButtonClick:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 返回组内最长的链表（若存在多个就随机选一个）
  */
 - (CircleLinkedList*)longestLinkList;
+
 @end
 
 NS_ASSUME_NONNULL_END
