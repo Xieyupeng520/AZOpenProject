@@ -137,7 +137,7 @@
 - (void)dealSelectedCircle:(CircleView*)newCircle {
     CircleView* oldCircle = [self hasSelectedView];
     if (!oldCircle || oldCircle == newCircle) { //nil表示当前圆为第一个被选中的,ui处理就行
-        return;
+        //do nothing
     } else {
         if (oldCircle.circleModel.preCircle == newCircle.circleModel ||
             oldCircle.circleModel.nextCircle == newCircle.circleModel) {
@@ -162,13 +162,25 @@
             //可建立关联
             [[CircleManager getInstance] addLinkWith:oldCircle.circleModel and:newCircle.circleModel];
             [oldCircle setSelected:NO];
-            [newCircle setSelected:NO];
-            [self setNeedsDisplay];
+            if (!newCircle.circleModel.nextCircle) { //没有下一个
+                self.selectedView = newCircle; //允许连续建立关联关键代码
+                [self setNeedsDisplay];
+                return;
+            } else {
+                [newCircle setSelected:NO];
+                [self setNeedsDisplay];
+            }
         } else {
             [self showTips:@"无法给选中的两个圆建立关联"];
             [oldCircle setSelected:NO];
             [newCircle setSelected:NO];
         }
+    }
+    
+    if(self.selectedView) { //选中第二个就当没选中
+        self.selectedView = nil;
+    } else { //选中第一个记录下来
+        self.selectedView = newCircle;
     }
 }
 
@@ -195,12 +207,6 @@
     [touchView setSelected:!touchView.selected];
     //逻辑处理
     [self dealSelectedCircle:touchView];
-    
-    if(self.selectedView) { //选中第二个就当没选中
-        self.selectedView = nil;
-    } else { //选中第一个记录下来
-        self.selectedView = touchView;
-    }
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)panRecognizer {

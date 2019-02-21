@@ -167,7 +167,7 @@ static const CGColorRef SelectedBorderColor_Del() {
                self.circleModel.nextCircle != circle1.circleModel &&
                !self.circleModel.preCircle &&
                !circle1.circleModel.nextCircle) {
-        [self setBorderAddColor];
+        [self setBorderBothColor];
         //上层可以给圆1、圆2建立关联了
     } else {
         //上层报错
