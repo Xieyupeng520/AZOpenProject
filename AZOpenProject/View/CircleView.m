@@ -25,6 +25,8 @@ static const CGColorRef SelectedBorderColor_Del() {
 
 @property(nonatomic, strong) UILabel* titleLabel;
 
+@property(nonatomic, strong) CAGradientLayer* gradientLayer; //用于实现半空半绿
+
 @end
 
 @implementation CircleView
@@ -86,6 +88,30 @@ static const CGColorRef SelectedBorderColor_Del() {
 
 - (void)setTitle:(NSString*)title {
     self.titleLabel.text = title;
+}
+
+- (CAGradientLayer *)gradientLayer {
+    if (!_gradientLayer) {
+        UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2) radius:CGRectGetWidth(self.bounds)/2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        
+        CAShapeLayer* shapeLayer = [CAShapeLayer layer];
+        shapeLayer.frame = self.bounds;
+        shapeLayer.lineWidth = CIRCLE_BORDER_WIDTH*2;
+        shapeLayer.lineJoin = kCALineJoinRound;
+        shapeLayer.lineCap = kCALineCapRound;
+        shapeLayer.path = circlePath.CGPath;
+        shapeLayer.strokeColor = [UIColor orangeColor].CGColor;
+        shapeLayer.fillColor = [UIColor clearColor].CGColor;
+        
+        CAGradientLayer* gradientLayer = [CAGradientLayer layer];
+        gradientLayer.frame = self.bounds;
+        gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor, (__bridge id)[UIColor greenColor].CGColor];
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(1, 0);
+        gradientLayer.mask = shapeLayer;
+        _gradientLayer = gradientLayer;
+    }
+    return _gradientLayer;
 }
 
 #pragma mark - KVO
@@ -176,15 +202,19 @@ static const CGColorRef SelectedBorderColor_Del() {
 
 - (void)setBorderDefaultColor {
     self.layer.borderColor = DefaultBorderColor();
+    [self.gradientLayer removeFromSuperlayer];
 }
 - (void)setBorderAddColor {
     self.layer.borderColor = SelectedBorderColor_Add();
+    [self.gradientLayer removeFromSuperlayer];
 }
 - (void)setBorderDelColor {
     self.layer.borderColor = SelectedBorderColor_Del();
+    [self.gradientLayer removeFromSuperlayer];
 }
 - (void)setBorderBothColor {
-    self.layer.borderColor = UIColor.yellowColor.CGColor;
+    self.layer.borderColor = UIColor.clearColor.CGColor;
+    [self.layer addSublayer:self.gradientLayer];
 }
 
 #pragma mark - 删除

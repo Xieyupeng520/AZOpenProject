@@ -39,6 +39,10 @@
 }
 
 - (void)commonInit {
+    self.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer* tapG = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    [self addGestureRecognizer:tapG];
 }
 
 #pragma mark - 绘图
@@ -201,12 +205,18 @@
 #pragma mark - 手势处理
 ///点击手势
 - (void)onTap:(UITapGestureRecognizer*)tapRecognizer {
-    CircleView *touchView = (CircleView*)tapRecognizer.view;
-    NSLog(@"%s : %@", __FUNCTION__, touchView.circleModel.title);
-    //UI处理
-    [touchView setSelected:!touchView.selected];
-    //逻辑处理
-    [self dealSelectedCircle:touchView];
+    //点击圆
+    if ([tapRecognizer.view isKindOfClass:CircleView.class]) {
+        CircleView *touchView = (CircleView*)tapRecognizer.view;
+        NSLog(@"%s : %@", __FUNCTION__, touchView.circleModel.title);
+        //UI处理
+        [touchView setSelected:!touchView.selected];
+        //逻辑处理
+        [self dealSelectedCircle:touchView];
+    } else { //点击空白区域
+        [self.selectedView setSelected:NO];
+        self.selectedView = nil;
+    }
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)panRecognizer {
