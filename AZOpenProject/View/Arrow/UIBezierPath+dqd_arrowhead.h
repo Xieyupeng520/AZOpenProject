@@ -11,4 +11,11 @@
                                          headWidth:(CGFloat)headWidth
                                         headLength:(CGFloat)headLength;
 
+/** 画带箭头的直线，从圆1表面指向圆2表面（要求两圆半径相同）
+ *  从fromCircleCenter指向toCircleCenter，箭头为等边三角形
+ *  radius 圆的半径
+ */
++ (UIBezierPath *)bezierPathWithArrowFrom:(CGPoint)fromCircleCenter
+                                       to:(CGPoint)toCircleCenter
+                                   radius:(CGFloat)radius;
 @end

@@ -54,33 +54,8 @@
 }
 
 - (void)drawLineFrom:(CircleModel*)fromCircle To:(CircleModel*)toCircle {
-    float from_x = fromCircle.centerPoint.x;
-    float from_y = fromCircle.centerPoint.y;
-    float to_x = toCircle.centerPoint.x;
-    float to_y = toCircle.centerPoint.y;
-    float r = fromCircle.radius;
-
-    //画线
-    float angle1,line_from_x,line_from_y,line_to_x,line_to_y;
-    angle1 = atanf((to_x - from_x) / (to_y - from_y));
-
-    if (from_y > to_y) { //一二象限
-        line_from_x = -sinf(angle1) * r + from_x;
-        line_from_y = -cosf(angle1) * r + from_y;
-        line_to_x = sinf(angle1) * r + to_x;
-        line_to_y = cosf(angle1) * r + to_y;
-    } else { //三四象限
-        line_from_x = sinf(angle1) * r + from_x;
-        line_from_y = cosf(angle1) * r + from_y;
-        line_to_x = -sinf(angle1) * r + to_x;
-        line_to_y = -cosf(angle1) * r + to_y;
-    }
-    
-    float line_distance = sqrtf(powf(line_to_y - line_from_y, 2) + powf(line_to_x - line_from_x, 2));
-    float headWidth = line_distance > 40 ? 20 : MAX(line_distance/2, 8);
-    
     //画顶点箭头
-    UIBezierPath* path = [UIBezierPath dqd_bezierPathWithArrowFromPoint:CGPointMake(line_from_x, line_from_y) toPoint:CGPointMake(line_to_x, line_to_y) tailWidth:3 headWidth:headWidth headLength:headWidth/5*4];
+    UIBezierPath* path = [UIBezierPath bezierPathWithArrowFrom:fromCircle.centerPoint to:toCircle.centerPoint radius:fromCircle.radius];
     [path fill];
 }
 
