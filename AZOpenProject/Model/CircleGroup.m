@@ -29,7 +29,7 @@ static const NSArray<NSString*>* TITLE_LIST() {
     return self;
 }
 
-#pragma mark - 判断
+#pragma mark - 信息
 - (BOOL)isBothInOneList:(CircleModel*)circle1 and:(CircleModel*)circle2 {
     for (CircleLinkedList* list in self.circleLists) {
         if ([list isCircleIn:circle1] && [list isCircleIn:circle2]) {
@@ -38,6 +38,26 @@ static const NSArray<NSString*>* TITLE_LIST() {
     }
     return NO;
 }
+
+- (BOOL)isExistOnlyOneCircle {
+    if (self.circleLists.count == 1 && self.circleLists[0].count == 1) {
+        return YES;
+    }
+    return NO;
+}
+
+- (CircleLinkedList *)longestLinkList {
+    int count = 0;
+    CircleLinkedList* result = nil;
+    for (CircleLinkedList* list in self.circleLists) {
+        if (list.count > count) {
+            count = list.count;
+            result = list;
+        }
+    }
+    return result;
+}
+
 #pragma mark - 新增
 ///新增圆链表
 - (BOOL)addNewCircleListWith:(CircleModel*)circleModel {

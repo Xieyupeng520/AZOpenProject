@@ -17,6 +17,8 @@
 		470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FE221AF42600B3BA0B /* CircleLinkedList.m */; };
 		479F34F1221C55FF000E0F06 /* CircleGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 479F34F0221C55FF000E0F06 /* CircleGroup.m */; };
 		63091623221D026D005FE2E7 /* UIView+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63091622221D026D005FE2E7 /* UIView+UIViewController.m */; };
+		635C2FFD221E4FF60036619D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2FFC221E4FF60036619D /* DetailViewController.m */; };
+		635C3001221E51400036619D /* CircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C3000221E51400036619D /* CircleManager.m */; };
 		637FF647221C265900245228 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FF646221C265900245228 /* CircleView.m */; };
 		637FF64A221C269000245228 /* CircleCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FF649221C269000245228 /* CircleCanvas.m */; };
 /* End PBXBuildFile section */
@@ -40,6 +42,10 @@
 		479F34F0221C55FF000E0F06 /* CircleGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleGroup.m; sourceTree = "<group>"; };
 		63091621221D026D005FE2E7 /* UIView+UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UIViewController.h"; sourceTree = "<group>"; };
 		63091622221D026D005FE2E7 /* UIView+UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIViewController.m"; sourceTree = "<group>"; };
+		635C2FFB221E4FF60036619D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		635C2FFC221E4FF60036619D /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		635C2FFF221E51400036619D /* CircleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleManager.h; sourceTree = "<group>"; };
+		635C3000221E51400036619D /* CircleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleManager.m; sourceTree = "<group>"; };
 		637FF645221C265900245228 /* CircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		637FF646221C265900245228 /* CircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		637FF648221C269000245228 /* CircleCanvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCanvas.h; sourceTree = "<group>"; };
@@ -76,13 +82,13 @@
 		470A82E2221AEEDE00B3BA0B /* AZOpenProject */ = {
 			isa = PBXGroup;
 			children = (
+				635C2FFE221E51130036619D /* Manager */,
 				63091620221D0242005FE2E7 /* Utils */,
 				637FF644221C263B00245228 /* View */,
 				470A82F9221AEF1D00B3BA0B /* Model */,
+				635C2FFA221E4FA10036619D /* VC */,
 				470A82E3221AEEDE00B3BA0B /* AppDelegate.h */,
 				470A82E4221AEEDE00B3BA0B /* AppDelegate.m */,
-				470A82E6221AEEDE00B3BA0B /* ViewController.h */,
-				470A82E7221AEEDE00B3BA0B /* ViewController.m */,
 				470A82E9221AEEDE00B3BA0B /* Main.storyboard */,
 				470A82EC221AEEE100B3BA0B /* Assets.xcassets */,
 				470A82EE221AEEE100B3BA0B /* LaunchScreen.storyboard */,
@@ -112,6 +118,26 @@
 				63091622221D026D005FE2E7 /* UIView+UIViewController.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		635C2FFA221E4FA10036619D /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				470A82E6221AEEDE00B3BA0B /* ViewController.h */,
+				470A82E7221AEEDE00B3BA0B /* ViewController.m */,
+				635C2FFB221E4FF60036619D /* DetailViewController.h */,
+				635C2FFC221E4FF60036619D /* DetailViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		635C2FFE221E51130036619D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				635C2FFF221E51400036619D /* CircleManager.h */,
+				635C3000221E51400036619D /* CircleManager.m */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		637FF644221C263B00245228 /* View */ = {
@@ -200,8 +226,10 @@
 				470A82FC221AEF7700B3BA0B /* CircleModel.m in Sources */,
 				637FF647221C265900245228 /* CircleView.m in Sources */,
 				470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */,
+				635C2FFD221E4FF60036619D /* DetailViewController.m in Sources */,
 				637FF64A221C269000245228 /* CircleCanvas.m in Sources */,
 				470A82F3221AEEE100B3BA0B /* main.m in Sources */,
+				635C3001221E51400036619D /* CircleManager.m in Sources */,
 				470A82E5221AEEDE00B3BA0B /* AppDelegate.m in Sources */,
 				479F34F1221C55FF000E0F06 /* CircleGroup.m in Sources */,
 			);

@@ -8,12 +8,10 @@
 
 #import "CircleCanvas.h"
 #import "CircleView.h"
-#import "CircleGroup.h"
 #import "UIView+UIViewController.h"
+#import "CircleManager.h"
 
 @interface CircleCanvas() <CircleViewDelegate>
-
-@property(nonatomic, strong) CircleGroup* circleGroup;
 
 @property(nonatomic, weak) CircleView* selectedView; //当前是否有选中view
 
@@ -41,22 +39,13 @@
 }
 
 - (void)commonInit {
-    self.circleGroup = [CircleGroup new];
-    [self addNewCircleAt:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
 }
-
 
 #pragma mark - 绘图
 - (void)drawRect:(CGRect)rect {
-    for (CircleLinkedList* linkList in self.circleGroup.circleLists) {
-        CircleModel* circle1 = linkList.startCircle;
-        CircleModel* circle2;
-        while (circle1.nextCircle) {
-            circle2 = circle1.nextCircle;
-            [self drawLineFrom:circle1 To:circle2];
-            circle1 = circle2;
-        }
-    }
+    [[CircleManager getInstance] enumAllLink:^(CircleModel * _Nonnull fromCircle, CircleModel * _Nonnull toCircle) {
+        [self drawLineFrom:fromCircle To:toCircle];
+    }];
 }
 
 - (void)drawLineFrom:(CircleModel*)fromCircle To:(CircleModel*)toCircle {
@@ -101,7 +90,7 @@
     CircleModel* model = [CircleModel new];
     model.centerPoint = center;
     
-    BOOL addSucc = [self.circleGroup addNewCircleListWith:model];
+    BOOL addSucc = [[CircleManager getInstance] addNewCircleListWith:model];
     
     if (!addSucc) { //添加失败
         [self showTips:@"已达到添加上限"];
@@ -141,7 +130,7 @@
             oldCircle.circleModel.nextCircle == newCircle.circleModel) {
             //存在关联，则提示弹框可以删除关联
             [self showDelTipsWithMsg:@"确认删除选中的两圆之间的关联吗？" delHandler:^{
-                [self.circleGroup delLinkWith:oldCircle.circleModel and:newCircle.circleModel];
+                [[CircleManager getInstance] delLinkWith:oldCircle.circleModel and:newCircle.circleModel];
                 [oldCircle setSelected:NO];
                 [newCircle setSelected:NO];
                 [self setNeedsDisplay];
@@ -149,7 +138,7 @@
                 [oldCircle setSelected:NO];
                 [newCircle setSelected:NO];
             }];
-        } else if ([self.circleGroup isBothInOneList:oldCircle.circleModel and:newCircle.circleModel]) { //俩圆在同一条链表的首尾
+        } else if ([[CircleManager getInstance] isBothInOneList:oldCircle.circleModel and:newCircle.circleModel]) { //俩圆在同一条链表的首尾
             [self showTips:@"无法建立循环关联"];
             [oldCircle setSelected:NO];
             [newCircle setSelected:NO];
@@ -158,7 +147,7 @@
                    !oldCircle.circleModel.nextCircle &&
                    !newCircle.circleModel.preCircle) {
             //可建立关联
-            [self.circleGroup addLinkWith:oldCircle.circleModel and:newCircle.circleModel];
+            [[CircleManager getInstance] addLinkWith:oldCircle.circleModel and:newCircle.circleModel];
             [oldCircle setSelected:NO];
             [newCircle setSelected:NO];
             [self setNeedsDisplay];
@@ -172,7 +161,12 @@
 
 #pragma mark - 删除圆
 - (void)deleteCircle:(CircleView*)delCircle {
-    [self.circleGroup delCircle:delCircle.circleModel];
+    BOOL delSucc = [[CircleManager getInstance] delCircle:delCircle.circleModel];
+    if (!delSucc) {
+        [self showTips:@"再删就没东西预览了！"];
+        [delCircle setSelected:NO];
+        return;
+    }
     [delCircle delete];
     [delCircle removeFromSuperview];
     

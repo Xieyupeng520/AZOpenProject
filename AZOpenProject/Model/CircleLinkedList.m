@@ -101,7 +101,7 @@
     return nil;
 }
 
-- (void)delete {
+- (void)deleteAll {
     CircleModel* curCircle = self.startCircle;
     CircleModel* delCircle = curCircle;
     while (curCircle) {
@@ -120,6 +120,19 @@
     }
     NSLog(@"以(%@)开头的链表元素个数为%d", self.startCircle.title, count);
     return count;
+}
+
+- (CircleModel*)circleAt:(int)index {
+    CircleModel* curCircle = self.startCircle;
+    int count = 0;
+    while (curCircle) {
+        if (index == count) {
+            return curCircle;
+        }
+        curCircle = curCircle.nextCircle;
+        count ++;
+    }
+    return nil;
 }
 
 - (NSString *)description {

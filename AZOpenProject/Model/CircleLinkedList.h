@@ -40,6 +40,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 链表内元素总数
  */
 - (int)count;
+
+/** 按照顺序读取第index+1个元素
+ *  index 从0开始
+ */
+- (CircleModel*)circleAt:(int)index;
 @end
 
 NS_ASSUME_NONNULL_END
