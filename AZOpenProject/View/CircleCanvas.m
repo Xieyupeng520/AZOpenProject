@@ -86,6 +86,19 @@
 }
 
 #pragma mark - 新增圆
+- (void)addNewCircleRandomIn:(CGRect)area {
+    //保证圆能完整显示在区域内
+    CGFloat deltaWidth = CGRectGetWidth(area) - CIRCLE_RADIUS*2;
+    CGFloat deltaHeight = CGRectGetHeight(area) - CIRCLE_RADIUS*2;
+    CGFloat minX = CGRectGetMinX(area) + CIRCLE_RADIUS;
+    CGFloat minY = CGRectGetMinY(area) + CIRCLE_RADIUS;
+    
+    CGFloat randomX = arc4random_uniform(deltaWidth+1);
+    CGFloat randomY = arc4random_uniform(deltaHeight+1);
+    
+    [self addNewCircleAt:CGPointMake(minX + randomX, minY + randomY)];
+}
+
 - (void)addNewCircleAt:(CGPoint)center {
     CircleModel* model = [CircleModel new];
     model.centerPoint = center;

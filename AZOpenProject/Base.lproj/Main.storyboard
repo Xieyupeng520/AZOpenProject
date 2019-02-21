@@ -76,6 +76,7 @@
                     <connections>
                         <outlet property="addButton" destination="iAz-Tn-e6Z" id="4Nq-Lj-sZX"/>
                         <outlet property="circleCanvas" destination="59e-73-nkK" id="4OV-Kw-dSy"/>
+                        <outlet property="previewButton" destination="QXS-Zw-JFD" id="KET-Nc-pbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

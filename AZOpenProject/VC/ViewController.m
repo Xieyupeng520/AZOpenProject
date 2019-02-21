@@ -13,6 +13,7 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet CircleCanvas *circleCanvas;
+@property (weak, nonatomic) IBOutlet UIButton *previewButton;
 
 @end
 
@@ -26,22 +27,17 @@
 }
 
 - (IBAction)onAddButtonClick:(id)sender {
-    [self.circleCanvas addNewCircleAt:CGPointMake(CGRectGetMidX(self.circleCanvas.bounds), CGRectGetMidY(self.circleCanvas.bounds))];
+//    [self.circleCanvas addNewCircleAt:CGPointMake(CGRectGetMidX(self.circleCanvas.bounds), CGRectGetMidY(self.circleCanvas.bounds))];
+    static int gap = 12;
+    [self.circleCanvas addNewCircleRandomIn:
+     CGRectMake(gap,
+                CGRectGetMaxY(self.previewButton.frame) + gap,
+                CGRectGetWidth(self.view.bounds) - gap*2,
+                CGRectGetMinY(self.addButton.frame) - CGRectGetMaxY(self.previewButton.frame) - gap*2)];
 }
 
 - (IBAction)onPreviewButtonClick:(id)sender {
     NSLog(@"点击预览");
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
-//        UINavigationController* nav = segue.destinationViewController;
-//        if (nav.viewControllers.count > 0) {
-//            UIViewController* vc = nav.viewControllers[0];
-//            if ([vc isKindOfClass:[DetailViewController class]]) {
-//                ((DetailViewController*)vc).index = 0;
-//            }
-//        }
-//    }
-}
 @end

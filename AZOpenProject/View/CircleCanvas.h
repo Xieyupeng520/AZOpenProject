@@ -12,7 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CircleCanvas : UIView
 
+/** 在某个位置新增圆
+ */
 - (void)addNewCircleAt:(CGPoint)center;
+
+/** 在某个区域内随机位置新增圆
+ */
+- (void)addNewCircleRandomIn:(CGRect)area;
 @end
 
 NS_ASSUME_NONNULL_END
