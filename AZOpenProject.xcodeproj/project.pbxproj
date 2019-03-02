@@ -16,6 +16,8 @@
 		470A82FC221AEF7700B3BA0B /* CircleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FB221AEF7700B3BA0B /* CircleModel.m */; };
 		470A82FF221AF42600B3BA0B /* CircleLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 470A82FE221AF42600B3BA0B /* CircleLinkedList.m */; };
 		479F34F1221C55FF000E0F06 /* CircleGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 479F34F0221C55FF000E0F06 /* CircleGroup.m */; };
+		47C13967222ACFFC003221D5 /* Editor.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 47C13966222ACFFC003221D5 /* Editor.PNG */; };
+		47C13969222AD006003221D5 /* Preview.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 47C13968222AD006003221D5 /* Preview.PNG */; };
 		63091623221D026D005FE2E7 /* UIView+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63091622221D026D005FE2E7 /* UIView+UIViewController.m */; };
 		635C2FFD221E4FF60036619D /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C2FFC221E4FF60036619D /* DetailViewController.m */; };
 		635C3001221E51400036619D /* CircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C3000221E51400036619D /* CircleManager.m */; };
@@ -41,6 +43,8 @@
 		470A82FE221AF42600B3BA0B /* CircleLinkedList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleLinkedList.m; sourceTree = "<group>"; };
 		479F34EF221C55FF000E0F06 /* CircleGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleGroup.h; sourceTree = "<group>"; };
 		479F34F0221C55FF000E0F06 /* CircleGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleGroup.m; sourceTree = "<group>"; };
+		47C13966222ACFFC003221D5 /* Editor.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Editor.PNG; sourceTree = "<group>"; };
+		47C13968222AD006003221D5 /* Preview.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Preview.PNG; sourceTree = "<group>"; };
 		63091621221D026D005FE2E7 /* UIView+UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UIViewController.h"; sourceTree = "<group>"; };
 		63091622221D026D005FE2E7 /* UIView+UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIViewController.m"; sourceTree = "<group>"; };
 		635C2FFB221E4FF60036619D /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		470A82D7221AEEDE00B3BA0B = {
 			isa = PBXGroup;
 			children = (
+				47C13965222ACFD3003221D5 /* preview */,
 				470A82E2221AEEDE00B3BA0B /* AZOpenProject */,
 				470A82E1221AEEDE00B3BA0B /* Products */,
 			);
@@ -112,6 +117,15 @@
 				479F34F0221C55FF000E0F06 /* CircleGroup.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		47C13965222ACFD3003221D5 /* preview */ = {
+			isa = PBXGroup;
+			children = (
+				47C13966222ACFFC003221D5 /* Editor.PNG */,
+				47C13968222AD006003221D5 /* Preview.PNG */,
+			);
+			path = preview;
 			sourceTree = "<group>";
 		};
 		63091620221D0242005FE2E7 /* Utils */ = {
@@ -213,9 +227,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C13967222ACFFC003221D5 /* Editor.PNG in Resources */,
 				470A82F0221AEEE100B3BA0B /* LaunchScreen.storyboard in Resources */,
 				470A82ED221AEEE100B3BA0B /* Assets.xcassets in Resources */,
 				470A82EB221AEEDE00B3BA0B /* Main.storyboard in Resources */,
+				47C13969222AD006003221D5 /* Preview.PNG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
