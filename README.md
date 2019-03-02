@@ -68,7 +68,8 @@
   
 
 ​​
- **成果图**
+
+**成果图**
  
  ![编辑页](https://github.com/Xieyupeng520/AZOpenProject/blob/master/preview/Editor.PNG)
  ![预览页](https://github.com/Xieyupeng520/AZOpenProject/blob/master/preview/Preview.PNG)
