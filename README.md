@@ -65,3 +65,9 @@
     3.2 删除关联：选中了存在关联的圆1、圆2，弹框提示是否删除关联，确认删除后关联消失。
 
   4.预览页面UI：导航栏返回&title，下一页面按钮，回到编辑页面按钮
+  
+
+
+ **成果图**
+ ![编辑页](https://github.com/Xieyupeng520/AZOpenProject/blob/master/preview/Editor.PNG)
+ ![预览页](https://github.com/Xieyupeng520/AZOpenProject/blob/master/preview/Preview.PNG)
